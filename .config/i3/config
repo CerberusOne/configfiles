@@ -44,10 +44,10 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -68,7 +68,9 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+#bindsym $mod+h split h
+bindsym $mod+b split h
+
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -166,9 +168,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Reduce borders to 1 pixel
-new_window 1pixel
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -187,13 +186,30 @@ bar {
     tray_output none
 }
 
+#Reduce borders to 1 pixel
+#new_window 1pixel
+#new_window normal
+default_border pixel 1
+default_floating_border pixel 1
+for_window [class="urxvt"] border pixel 5
+
 #hide borders
-hide_edge_borders both
+hide_edge_borders horizontal
 
 #change color of borders that show up
-client.focused #3a3a3a #3a3a3a #ffffff #3a3a3a #3a3a3a
-client.unfocused #000000 #000000 #ffffff #3a3a3a #3a3a3a
+#class                  border  backgr  text    indicator   child_border
+#client.focused          #ffffff  #3a3a3a  #ffffff  #3a3a3a      #3a3a3a
+#client.focused_inactive #000000  #000000  #ffffff  #3a3a3a      #3a3a3a
+#client.unfocused        #ffffff  #000000  #ffffff  #3a3a3a      #3a3a3a
+#client.urgent           #2f343a  #900000  #ffffff  #900000      #900000
+#client.placeholder      #000000  #0c0c0c  #ffffff  #000000      #0c0c0c
 
+# class                 border  backgr. text    indicator child_border
+client.focused          #000000 #000000 #c1951b #000000   #333333
+client.focused_inactive #000000 #000000 #c1951b #000000   #333333
+client.unfocused        #000000 #000000 #888888 #000000   #000000
+client.urgent           #000000 #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 #brightness keybinding for XPS 13 9343
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/aing/scripts/brightness/brightness_decrease
@@ -201,3 +217,20 @@ bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/aing/scripts/brightn
 
 #use slock to lock screen
 bindsym $mod+Shift+a exec sudo slock
+
+#sound keybinding for XPS 13 9343
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+#bindsym XF86AudioMute exec --no-startup-id exec amixer -q sset Master 0% #mute
+bindsym XF86AudioMute exec --no-startup-id exec amixer -q sset Master 0% && amixer sset PCM 0% #mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id exec amixer -q sset Master 10%+ && amixer sset PCM 100% #increase
+#bindsym XF86AudioRaiseVolume exec --no-startup-id exec amixer -q sset PCM 10%+ #increase
+bindsym XF86AudioLowerVolume exec --no-startup-id exec amixer -q sset Master 10%- && amixer sset PCM 100% #decrease
+#bindsym XF86AudioLowerVolume exec --no-startup-id exec amixer -q sset PCM 10%- #decrease
+
+#audio functions for XPS 13 9343
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous

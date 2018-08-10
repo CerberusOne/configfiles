@@ -194,7 +194,7 @@ default_floating_border pixel 1
 for_window [class="urxvt"] border pixel 5
 
 #hide borders
-hide_edge_borders horizontal
+#hide_edge_borders horizontal
 
 #change color of borders that show up
 #class                  border  backgr  text    indicator   child_border
@@ -205,7 +205,7 @@ hide_edge_borders horizontal
 #client.placeholder      #000000  #0c0c0c  #ffffff  #000000      #0c0c0c
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #000000 #000000 #c1951b #000000   #333333
+client.focused          #000000 #000000 #c1951b #000000   #555555
 client.focused_inactive #000000 #000000 #c1951b #000000   #333333
 client.unfocused        #000000 #000000 #888888 #000000   #000000
 client.urgent           #000000 #900000 #ffffff #900000   #900000
